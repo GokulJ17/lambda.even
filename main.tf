@@ -8,11 +8,6 @@ module "iam" {
   role_name  = "lambda_ec2_role"
 }
 
-# CloudWatch Log Groups
-module "cloudwatch" {
-  source = "./modules/cloudwatch"
-}
-
 # Lambda Function to Start EC2
 module "lambda_start" {
   source            = "./modules/lambda"
@@ -22,7 +17,6 @@ module "lambda_start" {
   role_arn         = module.iam.arn
   start_instance_zip = "${path.module}/modules/lambda/start_instance.zip"
   stop_instance_zip  = "${path.module}/modules/lambda/stop_instance.zip"
-  depends_on       = [module.cloudwatch]
 }
 
 # Lambda Function to Stop EC2
@@ -34,7 +28,6 @@ module "lambda_stop" {
   role_arn         = module.iam.arn
   start_instance_zip = "${path.module}/modules/lambda/start_instance.zip"
   stop_instance_zip  = "${path.module}/modules/lambda/stop_instance.zip"
-  depends_on       = [module.cloudwatch]
 }
 
 # EventBridge Module
@@ -46,6 +39,6 @@ module "eventbridge" {
   stop_lambda_name  = "stop_ec2_function"                # Use the actual function name
   start_event_name  = "start_ec2_event"
   stop_event_name   = "stop_ec2_event"
-  start_schedule    = "cron(00 11 * * ? *)"             # 5:40 AM UTC
-  stop_schedule     = "cron(05 11 * * ? *)"             # 5:45 AM UTC
+  start_schedule    = "cron(10 12 * * ? *)"             # 5:40 AM UTC
+  stop_schedule     = "cron(15 12 * * ? *)"             # 5:45 AM UTC
 }
