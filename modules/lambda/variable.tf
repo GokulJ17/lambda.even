@@ -1,6 +1,6 @@
 variable "instance_id" {
   description = "EC2 Instance ID"
-  default     = "i-0a25de1cdbedb0ba0"
+  default     = "i-021c370818d26eb8a"
   type        = string
 }
 

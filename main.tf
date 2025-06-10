@@ -39,6 +39,6 @@ module "eventbridge" {
   stop_lambda_name  = "stop_ec2_function"                # Use the actual function name
   start_event_name  = "start_ec2_event"
   stop_event_name   = "stop_ec2_event"
-  start_schedule    = "cron(10 12 * * ? *)"             # 5:40 AM UTC
-  stop_schedule     = "cron(15 12 * * ? *)"             # 5:45 AM UTC
+  start_schedule    = "cron(50 06 * * ? *)"             # 5:40 AM UTC
+  stop_schedule     = "cron(55 06 * * ? *)"             # 5:45 AM UTC
 }
